@@ -8,6 +8,8 @@ const reducer = (state, action) => {
       //   which is set in  CartContainer
       return { ...state, cart: [] };
    }
+
+   //    remove
    if (action.type === 'REMOVE') {
       return {
          ...state,
@@ -15,6 +17,20 @@ const reducer = (state, action) => {
          cart: state.cart.filter((item) => item.id !== action.payload),
       };
    }
+   if (action.type === 'INCREASE') {
+      let tempCart = state.cart.map((item) => {
+         if (item.id === action.payload) {
+            // return the amount in the current and change the item amount +1
+            //  have to return the current select item which is ...item
+            return { ...item, amount: item.amount + 1 };
+         }
+         console.log(item);
+         return item;
+      });
+      return { ...state, cart: tempCart };
+   }
+
+   //    increase and decrease
 
    return state;
 };
