@@ -20,10 +20,17 @@ const AppProvider = ({ children }) => {
    // past in initialstate into reducer
    const [state, dispatch] = useReducer(reducer, initialState);
 
+   // some functions triggered by using dispatch
+   // Clear button
+   const clearCart = () => {
+      dispatch({ type: 'CLEAR_CART' });
+   };
+
    return (
       <AppContext.Provider
          value={{
             ...state,
+            clearCart
          }}
       >
          {children}

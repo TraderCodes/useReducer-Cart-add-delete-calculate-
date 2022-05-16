@@ -4,7 +4,8 @@ import { useGlobalContext } from './context';
 
 const CartContainer = () => {
    // total for the total amount of price
-   const { cart, total } = useGlobalContext();
+   const { cart, total, clearCart } = useGlobalContext();
+   
    if (cart.length === 0) {
       return (
          <section className="cart">
@@ -36,10 +37,7 @@ const CartContainer = () => {
                   total <span>{total}</span>
                </h4>
             </div>
-            <button
-               className="btn clear-btn"
-               onClick={() => console.log('clear cart')}
-            >
+            <button className="btn clear-btn" onClick={clearCart}>
                clear cart
             </button>
          </footer>
