@@ -8,6 +8,13 @@ const reducer = (state, action) => {
       //   which is set in  CartContainer
       return { ...state, cart: [] };
    }
+   if (action.type === 'REMOVE') {
+      return {
+         ...state,
+         //  return the id thats not == to the current payload which is the ID
+         cart: state.cart.filter((item) => item.id !== action.payload),
+      };
+   }
 
    return state;
 };
