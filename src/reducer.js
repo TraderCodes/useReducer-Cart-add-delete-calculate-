@@ -17,6 +17,7 @@ const reducer = (state, action) => {
          cart: state.cart.filter((item) => item.id !== action.payload),
       };
    }
+   //    increase and decrease
    if (action.type === 'INCREASE') {
       let tempCart = state.cart.map((item) => {
          if (item.id === action.payload) {
@@ -29,8 +30,19 @@ const reducer = (state, action) => {
       });
       return { ...state, cart: tempCart };
    }
-
-   //    increase and decrease
+   if (action.type === 'DECREASE') {
+      let tempCart = state.cart
+         .map((item) => {
+            if (item.id === action.payload) {
+               return { ...item, amount: item.amount - 1 };
+            }
+            console.log(item);
+            return item;
+            //  filter cart item amount to not be negative
+         })
+         .filter((item) => item.amount !== 0);
+      return { ...state, cart: tempCart };
+   }
 
    return state;
 };
